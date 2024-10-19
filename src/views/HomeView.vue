@@ -13,17 +13,7 @@
           <producto-listar></producto-listar>
         </v-card-text>
       </v-card>
-      <v-card outlined class="rounded-xl" elevation="0">
-        <v-card-title>
-          Bodega
-        </v-card-title>
-        <v-card-subtitle>
-          Administra los productos
-        </v-card-subtitle>
-        <v-card-text>
-          <producto-listar-agotado></producto-listar-agotado>
-        </v-card-text>
-      </v-card>
+
 
       <div>
 

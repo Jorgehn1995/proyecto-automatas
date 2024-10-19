@@ -24,7 +24,16 @@ const rules = {
       regex.test(value) || "Las existencias deben ser un número entero positivo"
     );
   },
-  vencimiento(value) {},
+  costo(value) {
+    if (!value) {
+      return true;
+    }
+    const regex = /^\d+(\.\d{1,2})?$/;
+    return (
+      regex.test(value) ||
+      "El precio debe ser un número válido con hasta dos decimales"
+    );
+  },
 
   fechaValida(fecha) {
     if (!!!fecha) {

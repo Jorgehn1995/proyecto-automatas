@@ -3,7 +3,7 @@
     <v-btn color="primary" depressed class="rounded-lg" @click="open">
       Ingresar Producto
     </v-btn>
-    <v-dialog v-model="isOpen" width="600">
+    <v-dialog v-model="isOpen" width="600" scrollable>
       <v-card outlined elevation="0" class="rounded-xl">
         <v-card-title>Nuevo Producto</v-card-title>
         <v-card-subtitle>Ingresa los datos de los productos</v-card-subtitle>
@@ -43,7 +43,7 @@
                 <v-text-field filled label="Serie" v-model="producto.serie"></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
-                <v-text-field filled label="Costo" prefix="Q" :rules="[rules.precio]"
+                <v-text-field filled label="Costo" prefix="Q" :rules="[rules.costo]"
                   v-model="producto.costo"></v-text-field>
               </v-col>
               <v-col cols="12" md="6">

@@ -3,20 +3,21 @@
         <v-btn color="primary" depressed class="rounded-lg" @click="open">
             <v-icon>mdi-pencil</v-icon>
         </v-btn>
-        <v-dialog v-model="isOpen" width="600">
+        <v-dialog v-model="isOpen" width="600" scrollable>
             <v-card outlined elevation="0" class="rounded-xl">
                 <v-card-title>Editar Producto</v-card-title>
                 <v-card-subtitle>Edita los datos del producto seleccionado</v-card-subtitle>
                 <v-card-text>
                     <v-form ref="form" lazy-validation id="producto-editar" @submit.prevent="procesar">
                         <v-row>
+                            <v-col cols="12">
+                                <span>
+                                    Informacion General
+                                </span>
+                            </v-col>
                             <v-col cols="12" md="6">
                                 <v-text-field filled ref="first" label="Nombre" v-model="producto.nombre"
                                     :rules="[rules.nombre]"></v-text-field>
-                            </v-col>
-                            <v-col cols="12" md="6">
-                                <v-text-field filled label="Precio" :rules="[rules.precio]"
-                                    v-model="producto.precio"></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
                                 <v-text-field filled label="Vencimiento" :rules="[rules.fechaValida]"
@@ -25,6 +26,28 @@
                             <v-col cols="12" md="6">
                                 <v-text-field filled label="Existencias" :rules="[rules.existencias]"
                                     v-model="producto.existencias"></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="6">
+                                <v-text-field filled label="Precio" prefix="Q" :rules="[rules.precio]"
+                                    v-model="producto.precio"></v-text-field>
+                            </v-col>
+                            <v-col cols="12">
+                                <span>
+                                    Informacion de Compra
+                                </span>
+                            </v-col>
+                            <v-col cols="12" md="6">
+                                <v-text-field filled label="Factura" v-model="producto.factura"></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="6">
+                                <v-text-field filled label="Serie" v-model="producto.serie"></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="6">
+                                <v-text-field filled label="Costo" prefix="Q" :rules="[rules.costo]"
+                                    v-model="producto.costo"></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="6">
+                                <v-checkbox v-model="producto.pagado" label="Producto Pagado"></v-checkbox>
                             </v-col>
                         </v-row>
                     </v-form>
@@ -63,6 +86,10 @@ export default {
                 precio: "",
                 fecha_vencimiento: "",
                 existencias: "",
+                factura: "",
+                serie: "",
+                costo: "",
+                pagado: false
             },
             rules,
         };
