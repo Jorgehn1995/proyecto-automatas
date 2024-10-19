@@ -71,7 +71,7 @@ import ProductoEditar from './producto-editar.vue'
 import ProductoCrear from './producto-crear.vue'
 export default {
   components: { ProductoCrear, ProductoEditar, ProductoEliminar },
-  name: "producto-listar",
+  name: "producto-listar-agotado",
   mounted() {
     this.init();
   },
@@ -85,7 +85,7 @@ export default {
         this.isLoading = true;
       }
       try {
-        const result = await this.$api.get("/productos");
+        const result = await this.$api.get("/productos?control=Agotado");
         this.items = result.data;
       } catch (error) {
         console.log(error);

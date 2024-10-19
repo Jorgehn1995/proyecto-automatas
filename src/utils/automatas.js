@@ -17,3 +17,5 @@ export const automataStock = (producto) => {
   }
   return estado;
 };
+
+export const automataPila = (producto) => {};

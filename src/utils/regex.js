@@ -4,7 +4,7 @@ const esBisiesto = (a) => {
 const rules = {
   nombre(value) {
     if (!value) return "Campo obligatorio";
-    const regex = /^[a-zA-Z0-9]{1,100}$/;
+    const regex = /^(?!\s*$)[a-zA-Z0-9 ]{1,100}$/;
     return (
       regex.test(value) ||
       "El nombre debe ser alfanumérico y tener entre 1 y 100 caracteres"

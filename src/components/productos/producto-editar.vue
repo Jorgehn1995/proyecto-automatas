@@ -63,7 +63,6 @@ export default {
                 precio: "",
                 fecha_vencimiento: "",
                 existencias: "",
-                control: "",
             },
             rules,
         };
@@ -93,7 +92,6 @@ export default {
         async procesar() {
             if (this.$refs.form.validate()) {
                 this.isLoading = true;
-                this.producto.control = automataStock(this.producto);
                 try {
                     const result = await this.$api.put(`/productos/${this.productoId}`, this.producto);
                     this.$emit("success", result.data);

@@ -10,12 +10,14 @@
         <v-card-text>
           <v-form ref="form" lazy-validation id="producto-crear" @submit.prevent="procesar">
             <v-row>
+              <v-col cols="12">
+                <span>
+                  Informacion General
+                </span>
+              </v-col>
               <v-col cols="12" md="6">
                 <v-text-field filled ref="first" label="Nombre" v-model="producto.nombre"
                   :rules="[rules.nombre]"></v-text-field>
-              </v-col>
-              <v-col cols="12" md="6">
-                <v-text-field filled label="Precio" :rules="[rules.precio]" v-model="producto.precio"></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
                 <v-text-field filled label="Vencimiento" :rules="[rules.fechaValida]"
@@ -25,11 +27,33 @@
                 <v-text-field filled label="Existencias" :rules="[rules.existencias]"
                   v-model="producto.existencias"></v-text-field>
               </v-col>
+              <v-col cols="12" md="6">
+                <v-text-field filled label="Precio" prefix="Q" :rules="[rules.precio]"
+                  v-model="producto.precio"></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <span>
+                  Informacion de Compra
+                </span>
+              </v-col>
+              <v-col cols="12" md="6">
+                <v-text-field filled label="Factura" v-model="producto.factura"></v-text-field>
+              </v-col>
+              <v-col cols="12" md="6">
+                <v-text-field filled label="Serie" v-model="producto.serie"></v-text-field>
+              </v-col>
+              <v-col cols="12" md="6">
+                <v-text-field filled label="Costo" prefix="Q" :rules="[rules.precio]"
+                  v-model="producto.costo"></v-text-field>
+              </v-col>
+              <v-col cols="12" md="6">
+                <v-checkbox v-model="producto.pagado" label="Producto Pagado"></v-checkbox>
+              </v-col>
             </v-row>
           </v-form>
         </v-card-text>
         <v-card-actions>
-          <v-btn text>
+          <v-btn text @click="isOpen = false">
             Cancelar
           </v-btn>
           <v-spacer></v-spacer>
@@ -49,13 +73,16 @@ export default {
   name: "producto-crear",
   data: () => ({
     isLoading: false,
-    isOpen: false,
+    isOpen: true,
     producto: {
       nombre: "",
       precio: "",
       fecha_vencimiento: "",
       existencias: "",
-      control: "",
+      factura: "",
+      serie: "",
+      costo: "",
+      pagado: false
     },
     rules
   }),
@@ -69,7 +96,7 @@ export default {
       }, 10);
     },
     async procesar() {
-      this.producto.control = automataStock(this.producto);
+
       if (this.$refs.form.validate()) {
         this.isLoading = true;
         try {
@@ -94,6 +121,10 @@ export default {
 .v-btn {
   padding-left: 16px !important;
   padding-right: 16px !important;
+}
+
+.v-text-field__prefix {
+  margin-top: 0px !important;
 }
 
 .v-text-field,
