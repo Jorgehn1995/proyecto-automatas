@@ -73,7 +73,7 @@ export default {
   name: "producto-crear",
   data: () => ({
     isLoading: false,
-    isOpen: true,
+    isOpen: false,
     producto: {
       nombre: "",
       precio: "",

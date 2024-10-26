@@ -9,8 +9,9 @@
             <th>Precio</th>
             <th>Vencimiento</th>
             <th>Existencias</th>
+
             <th>
-              Control
+              Estado
             </th>
             <th>Acciones</th>
           </tr>
@@ -39,14 +40,9 @@
               <td>{{ item.existencias }}</td>
 
               <td>
-                <v-chip v-if="item.control == 'Disponible'" color="green" rounded small dark>
-                  {{ item.control }}
-                </v-chip>
-                <v-chip v-else-if="item.control == 'Bajo Stock'" color="warning" rounded small dark>
-                  {{ item.control }}
-                </v-chip>
-                <v-chip v-else color="error" rounded small dark>
-                  {{ item.control }}
+
+                <v-chip :color="estados[item.estado].color" rounded small dark>
+                  {{ estados[item.estado].text }}
                 </v-chip>
               </td>
 
@@ -77,6 +73,13 @@ export default {
   },
   data: () => ({
     isLoading: true,
+    estados: [
+      { text: "Ingresado", color: "grey" },
+      { text: "Facturado", color: "blue" },
+      { text: "Disponible", color: "green" },
+      { text: "Agotado", color: "error" }
+
+    ],
     items: []
   }),
   methods: {
@@ -86,6 +89,8 @@ export default {
       }
       try {
         const result = await this.$api.get("/productos");
+
+
         this.items = result.data;
       } catch (error) {
         console.log(error);
